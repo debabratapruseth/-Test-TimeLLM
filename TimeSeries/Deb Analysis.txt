@@ -1,0 +1,40 @@
+(A) Problem Statement – Minute-level volatility / Macro Volatility / Intraday
+
+Volatility: variability of price over next hour
+
+Volatility Type: Realized volatility (RV)
+
+Dataset: OHLCV candles – timestamp, open, high, low, close, volume
+
+Best Architecture:
+
+Traditional – Linear Regression, Ridge, Lasso, ElasticNet, Bayesian Ridge, Huber Regressor, Naive Past-H RV
+Additional - GARCH or EGARCH 
+
+ML – Random Forest, Gradient Boosting, HistGradientBoosting, Gaussian Process
+Additional - XGBoost / LightGBM
+
+DL – MLP, DeepLSTM
+Additional - TFT / N-Beats
+
+LLM based – TimeLLM (BERT) XX, Chronos-2(Amazon), TimesfM(Google)
+
+
+(B) Problem Statement – Micro Volatility (HFT)
+
+Volatility: At ms scale, “volatility” is mostly about microprice movement and order-book dynamics, not smooth return variance.
+
+Volatility Type:
+	•	Short-horizon realized variance
+	•	Quantile risk / tail probability
+
+Dataset: Tick Level Data
+	•	Trades stream (every trade event)
+	•	Level 2 order book (best bid/ask + depth), or full book updates if you can handle it
+
+Best Architecture: Latency Focused
+
+Traditional – EWMA on midprice returns
+ML – Gradient boosting on engineered microstructure features
+DL – DeepLOB-style CNN / State Space Models (S4/Mamba-like) / GBDT
+LLM based – NOT RECOMMENDED
